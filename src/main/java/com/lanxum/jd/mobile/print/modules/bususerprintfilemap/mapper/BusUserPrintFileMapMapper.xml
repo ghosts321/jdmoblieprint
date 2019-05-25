@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.mapper.BusUserPrintFileMapMapper" >
+	<resultMap id="BaseResultMap" type="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="bus_user_id" property="busUserId" jdbcType="INTEGER" />
+		<result column="bus_print_file_id" property="busPrintFileId" jdbcType="INTEGER" />
+		<result column="user_print_file_map_type_val" property="userPrintFileMapTypeVal" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+		id,
+		bus_user_id,
+		bus_print_file_id,
+		user_print_file_map_type_val,
+		create_date
+	</sql>
+	
+	<!-- 表名 -->
+	<sql id="tbl_name">bus_user_print_file_map</sql>
+	
+	<!-- 根据主键查询记录 -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				id = #{id,jdbcType=INTEGER}
+			</trim>
+		</where>
+	</select>
+
+	<!-- 插入一条记录 -->
+	<insert id="insert" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" > 
+		insert into <include refid="tbl_name" /> (
+			bus_user_id,
+			bus_print_file_id,
+			user_print_file_map_type_val,
+			create_date
+		)
+		values 
+		(
+			#{busUserId,jdbcType=INTEGER},
+			#{busPrintFileId,jdbcType=INTEGER},
+			#{userPrintFileMapTypeVal,jdbcType=INTEGER},
+			#{createDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<!-- 插入一条记录（部分字段） -->
+	<insert id="insertSelective" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" > 
+		insert into <include refid="tbl_name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="busUserId != null">
+				bus_user_id,
+			</if>
+			<if test="busPrintFileId != null">
+				bus_print_file_id,
+			</if>
+			<if test="userPrintFileMapTypeVal != null">
+				user_print_file_map_type_val,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="busUserId != null">
+				#{busUserId,jdbcType=INTEGER},
+			</if>
+			<if test="busPrintFileId != null">
+				#{busPrintFileId,jdbcType=INTEGER},
+			</if>
+			<if test="userPrintFileMapTypeVal != null">
+				#{userPrintFileMapTypeVal,jdbcType=INTEGER},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入记录 -->
+	<insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List" > 
+		insert into <include refid="tbl_name" /> (
+			bus_user_id,
+			bus_print_file_id,
+			user_print_file_map_type_val,
+			create_date
+		)
+		values
+		<foreach collection="list" index="index" item="entity" separator=",">
+		(
+			#{entity.busUserId,jdbcType=INTEGER},
+			#{entity.busPrintFileId,jdbcType=INTEGER},
+			#{entity.userPrintFileMapTypeVal,jdbcType=INTEGER},
+			#{entity.createDate,jdbcType=TIMESTAMP}
+		)
+		</foreach>
+	</insert>
+	
+	<!-- 根据主键删除数据 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		delete from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				id = #{id,jdbcType=INTEGER}
+		    </trim>
+		</where>
+	</delete>
+	
+	<!-- 根据多个主键，批量删除数据 -->
+	<delete id="deleteBatchByPKs" parameterType="java.lang.String" >
+		delete from <include refid="tbl_name" />
+	    <where>
+			<trim suffixOverrides="AND" >
+				id in 
+				<foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+				#{id}
+				</foreach>
+			</trim>
+		</where>
+	</delete>
+	
+	<!-- 根据主键，修改一条记录 -->
+	<update id="updateByPrimaryKey" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		update <include refid="tbl_name" />
+    	<trim prefix="set" suffixOverrides=","> 
+			<if test="busUserId != null">
+	    		bus_user_id = #{busUserId,jdbcType=INTEGER},
+	    	</if>
+			<if test="busPrintFileId != null">
+	    		bus_print_file_id = #{busPrintFileId,jdbcType=INTEGER},
+	    	</if>
+			<if test="userPrintFileMapTypeVal != null">
+	    		user_print_file_map_type_val = #{userPrintFileMapTypeVal,jdbcType=INTEGER},
+	    	</if>
+			<if test="createDate != null">
+	    		create_date = #{createDate,jdbcType=TIMESTAMP},
+	    	</if>
+		</trim> 
+		where 
+			id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据主键，修改一条记录（部分字段） -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		update <include refid="tbl_name" />
+    	<trim prefix="SET" suffixOverrides=",">
+			<if test="busUserId != null">
+	    		bus_user_id = #{busUserId,jdbcType=INTEGER},
+	    	</if>
+			<if test="busPrintFileId != null">
+	    		bus_print_file_id = #{busPrintFileId,jdbcType=INTEGER},
+	    	</if>
+			<if test="userPrintFileMapTypeVal != null">
+	    		user_print_file_map_type_val = #{userPrintFileMapTypeVal,jdbcType=INTEGER},
+	    	</if>
+			<if test="createDate != null">
+	    		create_date = #{createDate,jdbcType=TIMESTAMP},
+	    	</if>
+		</trim> 
+		where 
+			id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 查询全部结果 -->
+	<select id="queryAllData" resultMap="BaseResultMap" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+	</select>
+	
+	<!-- 根据参数对象，查询结果 -->
+	<select id="queryDataByModel" resultMap="BaseResultMap" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+	</select>
+	
+	<!-- 根据传入Model，查询结果列表 -->
+	<select id="queryDataByParam" resultMap="BaseResultMap" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				<if test="model.id != null">
+					AND id = #{model.id,jdbcType=INTEGER}
+				</if>
+				<if test="model.busUserId != null">
+					AND bus_user_id = #{model.busUserId,jdbcType=INTEGER}
+				</if>
+				<if test="model.busPrintFileId != null">
+					AND bus_print_file_id = #{model.busPrintFileId,jdbcType=INTEGER}
+				</if>
+				<if test="model.userPrintFileMapTypeVal != null">
+					AND user_print_file_map_type_val = #{model.userPrintFileMapTypeVal,jdbcType=INTEGER}
+				</if>
+				<if test="model.createDate != null">
+					AND create_date = #{model.createDate,jdbcType=TIMESTAMP}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 根据传入where语句，查询结果列表 -->
+	<select id="queryDataByWhere" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from <include refid="tbl_name" />
+        <if test="where != null and where != ''">
+            ${where}
+        </if>
+	</select>
+	
+	<!-- 根据传入Model，查询数据记录数 -->
+	<select id="queryCountByParam" resultType="java.lang.Integer" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		select count(*)
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				<if test="model.id != null">
+					AND id = #{model.id,jdbcType=INTEGER}
+				</if>
+				<if test="model.busUserId != null">
+					AND bus_user_id = #{model.busUserId,jdbcType=INTEGER}
+				</if>
+				<if test="model.busPrintFileId != null">
+					AND bus_print_file_id = #{model.busPrintFileId,jdbcType=INTEGER}
+				</if>
+				<if test="model.userPrintFileMapTypeVal != null">
+					AND user_print_file_map_type_val = #{model.userPrintFileMapTypeVal,jdbcType=INTEGER}
+				</if>
+				<if test="model.createDate != null">
+					AND create_date = #{model.createDate,jdbcType=TIMESTAMP}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 根据传入where语句，查询数据记录数 -->
+	<select id="queryCountByWhere" resultMap="BaseResultMap" parameterType="java.lang.String" >
+		select count(*)
+		from <include refid="tbl_name" />
+		<if test="${where} != null and ${where} != ''">
+			${where}
+		</if>
+	</select>
+	
+	<!-- 根据bus_print_file_id修改 -->
+	<update id="updatePrintMapByFileId" parameterType="com.lanxum.jd.mobile.print.modules.bususerprintfilemap.entity.BusUserPrintFileMap" >
+		update <include refid="tbl_name" />
+    	<trim prefix="SET" suffixOverrides=",">
+			<if test="busUserId != null">
+	    		bus_user_id = #{busUserId,jdbcType=INTEGER},
+	    	</if>
+		</trim> 
+		where 
+			bus_print_file_id = #{busPrintFileId,jdbcType=INTEGER}
+	</update>
+	
+</mapper>

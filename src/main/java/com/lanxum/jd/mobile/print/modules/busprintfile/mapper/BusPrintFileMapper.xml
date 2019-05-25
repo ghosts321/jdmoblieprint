@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanxum.jd.mobile.print.modules.busprintfile.mapper.BusPrintFileMapper">
+    <resultMap id="BaseResultMap" type="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        <result column="Id" property="id" jdbcType="INTEGER"/>
+        <result column="Name" property="name" jdbcType="NVARCHAR"/>
+        <result column="Path" property="path" jdbcType="NVARCHAR"/>
+        <result column="Size_Num" property="sizeNum" jdbcType="INTEGER"/>
+        <result column="Copy_Num" property="copyNum" jdbcType="INTEGER"/>
+        <result column="Page_Num" property="pageNum" jdbcType="INTEGER"/>
+        <result column="Duplex_Flag" property="duplexFlag" jdbcType="BIT"/>
+        <result column="Collate_Flag" property="collateFlag" jdbcType="BIT"/>
+        <result column="Driver_Name" property="driverName" jdbcType="NVARCHAR"/>
+        <result column="Print_Server_Name" property="printServerName" jdbcType="NVARCHAR"/>
+        <result column="Format" property="format" jdbcType="NVARCHAR"/>
+        <result column="Analysis_Result_Slz" property="analysisResultSlz" jdbcType="NVARCHAR"/>
+        <result column="Print_Date" property="printDate" jdbcType="TIMESTAMP"/>
+        <result column="Bus_Virtual_Port_Printer_Id" property="busVirtualPortPrinterId" jdbcType="INTEGER"/>
+        <result column="Lang_Type_Val" property="langTypeVal" jdbcType="INTEGER"/>
+        <result column="Create_Date" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="Preview_File_Path" property="previewFilePath" jdbcType="NVARCHAR"/>
+        <result column="Archive_File_Path" property="archiveFilePath" jdbcType="NVARCHAR"/>
+        <result column="Expired_Date" property="expiredDate" jdbcType="TIMESTAMP"/>
+        <result column="A3_Num" property="a3Num" jdbcType="INTEGER"/>
+        <result column="Bw_Num" property="bwNum" jdbcType="INTEGER"/>
+        <result column="Color_Num" property="colorNum" jdbcType="INTEGER"/>
+        <result column="Duplex_Num" property="duplexNum" jdbcType="INTEGER"/>
+        <result column="Preview_Flag" property="previewFlag" jdbcType="BIT"/>
+        <result column="Archive_Flag" property="archiveFlag" jdbcType="BIT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		Id,
+		Name,
+		Path,
+		Size_Num,
+		Copy_Num,
+		Page_Num,
+		Duplex_Flag,
+		Collate_Flag,
+		Driver_Name,
+		Print_Server_Name,
+		Format,
+		Analysis_Result_Slz,
+		Print_Date,
+		Bus_Virtual_Port_Printer_Id,
+		Lang_Type_Val,
+		Create_Date,
+		Preview_File_Path,
+		Archive_File_Path,
+		Expired_Date,
+		A3_Num,
+		Bw_Num,
+		Color_Num,
+		Duplex_Num,
+		Preview_Flag,
+		Archive_Flag
+	</sql>
+
+    <!-- 表名 -->
+    <sql id="tbl_name">bus_print_file</sql>
+
+    <!-- 根据主键查询记录 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="tbl_name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                Id = #{id,jdbcType=INTEGER}
+            </trim>
+        </where>
+    </select>
+
+    <!-- 插入一条记录 -->
+    <insert id="insert" parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="tbl_name"/>
+        (
+        Name,
+        Path,
+        Size_Num,
+        Copy_Num,
+        Page_Num,
+        Duplex_Flag,
+        Collate_Flag,
+        Driver_Name,
+        Print_Server_Name,
+        Format,
+        Analysis_Result_Slz,
+        Print_Date,
+        Bus_Virtual_Port_Printer_Id,
+        Lang_Type_Val,
+        Create_Date,
+        Preview_File_Path,
+        Archive_File_Path,
+        Expired_Date,
+        A3_Num,
+        Bw_Num,
+        Color_Num,
+        Duplex_Num,
+        Preview_Flag,
+        Archive_Flag
+        )
+        values
+        (
+        #{name,jdbcType=NVARCHAR},
+        #{path,jdbcType=NVARCHAR},
+        #{sizeNum,jdbcType=INTEGER},
+        #{copyNum,jdbcType=INTEGER},
+        #{pageNum,jdbcType=INTEGER},
+        #{duplexFlag,jdbcType=BIT},
+        #{collateFlag,jdbcType=BIT},
+        #{driverName,jdbcType=NVARCHAR},
+        #{printServerName,jdbcType=NVARCHAR},
+        #{format,jdbcType=NVARCHAR},
+        #{analysisResultSlz,jdbcType=NVARCHAR},
+        #{printDate,jdbcType=TIMESTAMP},
+        #{busVirtualPortPrinterId,jdbcType=INTEGER},
+        #{langTypeVal,jdbcType=INTEGER},
+        #{createDate,jdbcType=TIMESTAMP},
+        #{previewFilePath,jdbcType=NVARCHAR},
+        #{archiveFilePath,jdbcType=NVARCHAR},
+        #{expiredDate,jdbcType=TIMESTAMP},
+        #{a3Num,jdbcType=INTEGER},
+        #{bwNum,jdbcType=INTEGER},
+        #{colorNum,jdbcType=INTEGER},
+        #{duplexNum,jdbcType=INTEGER},
+        #{previewFlag,jdbcType=BIT},
+        #{archiveFlag,jdbcType=BIT}
+        )
+    </insert>
+
+    <!-- 插入一条记录（部分字段） -->
+    <insert id="insertSelective" parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        insert into
+        <include refid="tbl_name"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                Name,
+            </if>
+            <if test="path != null">
+                Path,
+            </if>
+            <if test="sizeNum != null">
+                Size_Num,
+            </if>
+            <if test="copyNum != null">
+                Copy_Num,
+            </if>
+            <if test="pageNum != null">
+                Page_Num,
+            </if>
+            <if test="duplexFlag != null">
+                Duplex_Flag,
+            </if>
+            <if test="collateFlag != null">
+                Collate_Flag,
+            </if>
+            <if test="driverName != null">
+                Driver_Name,
+            </if>
+            <if test="printServerName != null">
+                Print_Server_Name,
+            </if>
+            <if test="format != null">
+                Format,
+            </if>
+            <if test="analysisResultSlz != null">
+                Analysis_Result_Slz,
+            </if>
+            <if test="printDate != null">
+                Print_Date,
+            </if>
+            <if test="busVirtualPortPrinterId != null">
+                Bus_Virtual_Port_Printer_Id,
+            </if>
+            <if test="langTypeVal != null">
+                Lang_Type_Val,
+            </if>
+            <if test="createDate != null">
+                Create_Date,
+            </if>
+            <if test="previewFilePath != null">
+                Preview_File_Path,
+            </if>
+            <if test="archiveFilePath != null">
+                Archive_File_Path,
+            </if>
+            <if test="expiredDate != null">
+                Expired_Date,
+            </if>
+            <if test="a3Num != null">
+                A3_Num,
+            </if>
+            <if test="bwNum != null">
+                Bw_Num,
+            </if>
+            <if test="colorNum != null">
+                Color_Num,
+            </if>
+            <if test="duplexNum != null">
+                Duplex_Num,
+            </if>
+            <if test="previewFlag != null">
+                Preview_Flag,
+            </if>
+            <if test="archiveFlag != null">
+                Archive_Flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=NVARCHAR},
+            </if>
+            <if test="sizeNum != null">
+                #{sizeNum,jdbcType=INTEGER},
+            </if>
+            <if test="copyNum != null">
+                #{copyNum,jdbcType=INTEGER},
+            </if>
+            <if test="pageNum != null">
+                #{pageNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexFlag != null">
+                #{duplexFlag,jdbcType=BIT},
+            </if>
+            <if test="collateFlag != null">
+                #{collateFlag,jdbcType=BIT},
+            </if>
+            <if test="driverName != null">
+                #{driverName,jdbcType=NVARCHAR},
+            </if>
+            <if test="printServerName != null">
+                #{printServerName,jdbcType=NVARCHAR},
+            </if>
+            <if test="format != null">
+                #{format,jdbcType=NVARCHAR},
+            </if>
+            <if test="analysisResultSlz != null">
+                #{analysisResultSlz,jdbcType=NVARCHAR},
+            </if>
+            <if test="printDate != null">
+                #{printDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="busVirtualPortPrinterId != null">
+                #{busVirtualPortPrinterId,jdbcType=INTEGER},
+            </if>
+            <if test="langTypeVal != null">
+                #{langTypeVal,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="previewFilePath != null">
+                #{previewFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="archiveFilePath != null">
+                #{archiveFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="expiredDate != null">
+                #{expiredDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="a3Num != null">
+                #{a3Num,jdbcType=INTEGER},
+            </if>
+            <if test="bwNum != null">
+                #{bwNum,jdbcType=INTEGER},
+            </if>
+            <if test="colorNum != null">
+                #{colorNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexNum != null">
+                #{duplexNum,jdbcType=INTEGER},
+            </if>
+            <if test="previewFlag != null">
+                #{previewFlag,jdbcType=BIT},
+            </if>
+            <if test="archiveFlag != null">
+                #{archiveFlag,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 批量插入记录 -->
+    <insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List">
+        insert into
+        <include refid="tbl_name"/>
+        (
+        Name,
+        Path,
+        Size_Num,
+        Copy_Num,
+        Page_Num,
+        Duplex_Flag,
+        Collate_Flag,
+        Driver_Name,
+        Print_Server_Name,
+        Format,
+        Analysis_Result_Slz,
+        Print_Date,
+        Bus_Virtual_Port_Printer_Id,
+        Lang_Type_Val,
+        Create_Date,
+        Preview_File_Path,
+        Archive_File_Path,
+        Expired_Date,
+        A3_Num,
+        Bw_Num,
+        Color_Num,
+        Duplex_Num,
+        Preview_Flag,
+        Archive_Flag
+        )
+        values
+        <foreach collection="list" index="index" item="entity" separator=",">
+            (
+            #{entity.name,jdbcType=NVARCHAR},
+            #{entity.path,jdbcType=NVARCHAR},
+            #{entity.sizeNum,jdbcType=INTEGER},
+            #{entity.copyNum,jdbcType=INTEGER},
+            #{entity.pageNum,jdbcType=INTEGER},
+            #{entity.duplexFlag,jdbcType=BIT},
+            #{entity.collateFlag,jdbcType=BIT},
+            #{entity.driverName,jdbcType=NVARCHAR},
+            #{entity.printServerName,jdbcType=NVARCHAR},
+            #{entity.format,jdbcType=NVARCHAR},
+            #{entity.analysisResultSlz,jdbcType=NVARCHAR},
+            #{entity.printDate,jdbcType=TIMESTAMP},
+            #{entity.busVirtualPortPrinterId,jdbcType=INTEGER},
+            #{entity.langTypeVal,jdbcType=INTEGER},
+            #{entity.createDate,jdbcType=TIMESTAMP},
+            #{entity.previewFilePath,jdbcType=NVARCHAR},
+            #{entity.archiveFilePath,jdbcType=NVARCHAR},
+            #{entity.expiredDate,jdbcType=TIMESTAMP},
+            #{entity.a3Num,jdbcType=INTEGER},
+            #{entity.bwNum,jdbcType=INTEGER},
+            #{entity.colorNum,jdbcType=INTEGER},
+            #{entity.duplexNum,jdbcType=INTEGER},
+            #{entity.previewFlag,jdbcType=BIT},
+            #{entity.archiveFlag,jdbcType=BIT}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 根据主键删除数据 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from
+        <include refid="tbl_name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                Id = #{id,jdbcType=INTEGER}
+            </trim>
+        </where>
+    </delete>
+
+    <!-- 根据多个主键，批量删除数据 -->
+    <delete id="deleteBatchByPKs" parameterType="java.lang.String">
+        delete from
+        <include refid="tbl_name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                Id in
+                <foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+                    #{id}
+                </foreach>
+            </trim>
+        </where>
+    </delete>
+
+    <!-- 根据主键，修改一条记录 -->
+    <update id="updateByPrimaryKey" parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        update
+        <include refid="tbl_name"/>
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                Name = #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="path != null and path != ''">
+                Path = #{path,jdbcType=NVARCHAR},
+            </if>
+            <if test="sizeNum != null">
+                Size_Num = #{sizeNum,jdbcType=INTEGER},
+            </if>
+            <if test="copyNum != null">
+                Copy_Num = #{copyNum,jdbcType=INTEGER},
+            </if>
+            <if test="pageNum != null">
+                Page_Num = #{pageNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexFlag != null">
+                Duplex_Flag = #{duplexFlag,jdbcType=BIT},
+            </if>
+            <if test="collateFlag != null">
+                Collate_Flag = #{collateFlag,jdbcType=BIT},
+            </if>
+            <if test="driverName != null and driverName != ''">
+                Driver_Name = #{driverName,jdbcType=NVARCHAR},
+            </if>
+            <if test="printServerName != null and printServerName != ''">
+                Print_Server_Name = #{printServerName,jdbcType=NVARCHAR},
+            </if>
+            <if test="format != null and format != ''">
+                Format = #{format,jdbcType=NVARCHAR},
+            </if>
+            <if test="analysisResultSlz != null and analysisResultSlz != ''">
+                Analysis_Result_Slz = #{analysisResultSlz,jdbcType=NVARCHAR},
+            </if>
+            <if test="printDate != null">
+                Print_Date = #{printDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="busVirtualPortPrinterId != null">
+                Bus_Virtual_Port_Printer_Id = #{busVirtualPortPrinterId,jdbcType=INTEGER},
+            </if>
+            <if test="langTypeVal != null">
+                Lang_Type_Val = #{langTypeVal,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                Create_Date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="previewFilePath != null and previewFilePath != ''">
+                Preview_File_Path = #{previewFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="archiveFilePath != null and archiveFilePath != ''">
+                Archive_File_Path = #{archiveFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="expiredDate != null">
+                Expired_Date = #{expiredDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="a3Num != null">
+                A3_Num = #{a3Num,jdbcType=INTEGER},
+            </if>
+            <if test="bwNum != null">
+                Bw_Num = #{bwNum,jdbcType=INTEGER},
+            </if>
+            <if test="colorNum != null">
+                Color_Num = #{colorNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexNum != null">
+                Duplex_Num = #{duplexNum,jdbcType=INTEGER},
+            </if>
+            <if test="previewFlag != null">
+                Preview_Flag = #{previewFlag,jdbcType=BIT},
+            </if>
+            <if test="archiveFlag != null">
+                Archive_Flag = #{archiveFlag,jdbcType=BIT},
+            </if>
+        </trim>
+        where
+        Id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 根据主键，修改一条记录（部分字段） -->
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        update
+        <include refid="tbl_name"/>
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">
+                Name = #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="path != null">
+                Path = #{path,jdbcType=NVARCHAR},
+            </if>
+            <if test="sizeNum != null">
+                Size_Num = #{sizeNum,jdbcType=INTEGER},
+            </if>
+            <if test="copyNum != null">
+                Copy_Num = #{copyNum,jdbcType=INTEGER},
+            </if>
+            <if test="pageNum != null">
+                Page_Num = #{pageNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexFlag != null">
+                Duplex_Flag = #{duplexFlag,jdbcType=BIT},
+            </if>
+            <if test="collateFlag != null">
+                Collate_Flag = #{collateFlag,jdbcType=BIT},
+            </if>
+            <if test="driverName != null">
+                Driver_Name = #{driverName,jdbcType=NVARCHAR},
+            </if>
+            <if test="printServerName != null">
+                Print_Server_Name = #{printServerName,jdbcType=NVARCHAR},
+            </if>
+            <if test="format != null">
+                Format = #{format,jdbcType=NVARCHAR},
+            </if>
+            <if test="analysisResultSlz != null">
+                Analysis_Result_Slz = #{analysisResultSlz,jdbcType=NVARCHAR},
+            </if>
+            <if test="printDate != null">
+                Print_Date = #{printDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="busVirtualPortPrinterId != null">
+                Bus_Virtual_Port_Printer_Id = #{busVirtualPortPrinterId,jdbcType=INTEGER},
+            </if>
+            <if test="langTypeVal != null">
+                Lang_Type_Val = #{langTypeVal,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null">
+                Create_Date = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="previewFilePath != null">
+                Preview_File_Path = #{previewFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="archiveFilePath != null">
+                Archive_File_Path = #{archiveFilePath,jdbcType=NVARCHAR},
+            </if>
+            <if test="expiredDate != null">
+                Expired_Date = #{expiredDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="a3Num != null">
+                A3_Num = #{a3Num,jdbcType=INTEGER},
+            </if>
+            <if test="bwNum != null">
+                Bw_Num = #{bwNum,jdbcType=INTEGER},
+            </if>
+            <if test="colorNum != null">
+                Color_Num = #{colorNum,jdbcType=INTEGER},
+            </if>
+            <if test="duplexNum != null">
+                Duplex_Num = #{duplexNum,jdbcType=INTEGER},
+            </if>
+            <if test="previewFlag != null">
+                Preview_Flag = #{previewFlag,jdbcType=BIT},
+            </if>
+            <if test="archiveFlag != null">
+                Archive_Flag = #{archiveFlag,jdbcType=BIT},
+            </if>
+        </trim>
+        where
+        Id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询全部结果 -->
+    <select id="queryAllData" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="tbl_name"/>
+    </select>
+
+    <!-- 根据参数对象，查询结果 -->
+    <select id="queryDataByModel" resultMap="BaseResultMap"
+            parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="tbl_name"/>
+    </select>
+
+    <!-- 根据传入Model，查询结果列表 -->
+    <select id="queryDataByParam" resultMap="BaseResultMap"
+            parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        <include refid="tbl_name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                <if test="model.id != null">
+                    AND Id = #{model.id,jdbcType=INTEGER}
+                </if>
+                <if test="model.name != null and model.name != ''">
+                    AND Name = #{model.name,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.path != null and model.path != ''">
+                    AND Path = #{model.path,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.sizeNum != null">
+                    AND Size_Num = #{model.sizeNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.copyNum != null">
+                    AND Copy_Num = #{model.copyNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.pageNum != null">
+                    AND Page_Num = #{model.pageNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.duplexFlag != null">
+                    AND Duplex_Flag = #{model.duplexFlag,jdbcType=BIT}
+                </if>
+                <if test="model.collateFlag != null">
+                    AND Collate_Flag = #{model.collateFlag,jdbcType=BIT}
+                </if>
+                <if test="model.driverName != null and model.driverName != ''">
+                    AND Driver_Name = #{model.driverName,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.printServerName != null and model.printServerName != ''">
+                    AND Print_Server_Name = #{model.printServerName,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.format != null and model.format != ''">
+                    AND Format = #{model.format,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.analysisResultSlz != null and model.analysisResultSlz != ''">
+                    AND Analysis_Result_Slz = #{model.analysisResultSlz,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.printDate != null">
+                    AND Print_Date = #{model.printDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.busVirtualPortPrinterId != null">
+                    AND Bus_Virtual_Port_Printer_Id = #{model.busVirtualPortPrinterId,jdbcType=INTEGER}
+                </if>
+                <if test="model.langTypeVal != null">
+                    AND Lang_Type_Val = #{model.langTypeVal,jdbcType=INTEGER}
+                </if>
+                <if test="model.createDate != null">
+                    AND Create_Date = #{model.createDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.previewFilePath != null and model.previewFilePath != ''">
+                    AND Preview_File_Path = #{model.previewFilePath,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.archiveFilePath != null and model.archiveFilePath != ''">
+                    AND Archive_File_Path = #{model.archiveFilePath,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.expiredDate != null">
+                    AND Expired_Date = #{model.expiredDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.a3Num != null">
+                    AND A3_Num = #{model.a3Num,jdbcType=INTEGER}
+                </if>
+                <if test="model.bwNum != null">
+                    AND Bw_Num = #{model.bwNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.colorNum != null">
+                    AND Color_Num = #{model.colorNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.duplexNum != null">
+                    AND Duplex_Num = #{model.duplexNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.previewFlag != null">
+                    AND Preview_Flag = #{model.previewFlag,jdbcType=BIT}
+                </if>
+                <if test="model.archiveFlag != null">
+                    AND Archive_Flag = #{model.archiveFlag,jdbcType=BIT}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <!-- 根据传入where语句，查询结果列表 -->
+    <select id="queryDataByWhere" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List" />
+        from <include refid="tbl_name" />
+        <if test="where != null and where != ''">
+            ${where}
+        </if>
+    </select>
+
+    <!-- 根据传入Model，查询数据记录数 -->
+    <select id="queryCountByParam" resultType="java.lang.Integer"
+            parameterType="com.lanxum.jd.mobile.print.modules.busprintfile.entity.BusPrintFile">
+        select count(*)
+        from
+        <include refid="tbl_name"/>
+        <where>
+            <trim suffixOverrides="AND">
+                <if test="model.id != null">
+                    AND Id = #{model.id,jdbcType=INTEGER}
+                </if>
+                <if test="model.name != null and model.name != ''">
+                    AND Name = #{model.name,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.path != null and model.path != ''">
+                    AND Path = #{model.path,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.sizeNum != null">
+                    AND Size_Num = #{model.sizeNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.copyNum != null">
+                    AND Copy_Num = #{model.copyNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.pageNum != null">
+                    AND Page_Num = #{model.pageNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.duplexFlag != null">
+                    AND Duplex_Flag = #{model.duplexFlag,jdbcType=BIT}
+                </if>
+                <if test="model.collateFlag != null">
+                    AND Collate_Flag = #{model.collateFlag,jdbcType=BIT}
+                </if>
+                <if test="model.driverName != null and model.driverName != ''">
+                    AND Driver_Name = #{model.driverName,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.printServerName != null and model.printServerName != ''">
+                    AND Print_Server_Name = #{model.printServerName,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.format != null and model.format != ''">
+                    AND Format = #{model.format,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.analysisResultSlz != null and model.analysisResultSlz != ''">
+                    AND Analysis_Result_Slz = #{model.analysisResultSlz,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.printDate != null">
+                    AND Print_Date = #{model.printDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.busVirtualPortPrinterId != null">
+                    AND Bus_Virtual_Port_Printer_Id = #{model.busVirtualPortPrinterId,jdbcType=INTEGER}
+                </if>
+                <if test="model.langTypeVal != null">
+                    AND Lang_Type_Val = #{model.langTypeVal,jdbcType=INTEGER}
+                </if>
+                <if test="model.createDate != null">
+                    AND Create_Date = #{model.createDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.previewFilePath != null and model.previewFilePath != ''">
+                    AND Preview_File_Path = #{model.previewFilePath,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.archiveFilePath != null and model.archiveFilePath != ''">
+                    AND Archive_File_Path = #{model.archiveFilePath,jdbcType=NVARCHAR}
+                </if>
+                <if test="model.expiredDate != null">
+                    AND Expired_Date = #{model.expiredDate,jdbcType=TIMESTAMP}
+                </if>
+                <if test="model.a3Num != null">
+                    AND A3_Num = #{model.a3Num,jdbcType=INTEGER}
+                </if>
+                <if test="model.bwNum != null">
+                    AND Bw_Num = #{model.bwNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.colorNum != null">
+                    AND Color_Num = #{model.colorNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.duplexNum != null">
+                    AND Duplex_Num = #{model.duplexNum,jdbcType=INTEGER}
+                </if>
+                <if test="model.previewFlag != null">
+                    AND Preview_Flag = #{model.previewFlag,jdbcType=BIT}
+                </if>
+                <if test="model.archiveFlag != null">
+                    AND Archive_Flag = #{model.archiveFlag,jdbcType=BIT}
+                </if>
+            </trim>
+        </where>
+    </select>
+
+    <!-- 根据传入where语句，查询数据记录数 -->
+    <select id="queryCountByWhere" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select count(*)
+        from
+        <include refid="tbl_name"/>
+        <if test="${where} != null and ${where} != ''">
+            ${where}
+        </if>
+    </select>
+
+</mapper>

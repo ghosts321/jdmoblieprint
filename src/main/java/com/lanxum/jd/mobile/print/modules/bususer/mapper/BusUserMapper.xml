@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lanxum.jd.mobile.print.modules.bususer.mapper.BusUserMapper" >
+	<resultMap id="BaseResultMap" type="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="display_name" property="displayName" jdbcType="VARCHAR" />
+		<result column="password_hash" property="passwordHash" jdbcType="VARCHAR" />
+		<result column="email_address" property="emailAddress" jdbcType="VARCHAR" />
+		<result column="domain_name" property="domainName" jdbcType="VARCHAR" />
+		<result column="domain_account" property="domainAccount" jdbcType="VARCHAR" />
+		<result column="computer_name" property="computerName" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="bus_cost_center_id" property="busCostCenterId" jdbcType="INTEGER" />
+		<result column="deleted_flag" property="deletedFlag" jdbcType="BIT" />
+		<result column="enabled_flag" property="enabledFlag" jdbcType="BIT" />
+		<result column="delete_date" property="deleteDate" jdbcType="TIMESTAMP" />
+		<result column="telno" property="telno" jdbcType="NVARCHAR" />
+		<result column="work_no" property="workNo" jdbcType="NVARCHAR" />
+		<result column="card_isn" property="cardIsn" jdbcType="NVARCHAR" />
+		<result column="introduction" property="introduction" jdbcType="NVARCHAR" />
+		<result column="bus_cost_control_rule_id" property="busCostControlRuleId" jdbcType="INTEGER" />
+		<result column="bus_charge_context_id" property="busChargeContextId" jdbcType="INTEGER" />
+		<result column="token" property="token" jdbcType="BINARY" />
+		<result column="domain_validation_flag" property="domainValidationFlag" jdbcType="BIT" />
+		<result column="guid" property="guid" jdbcType="NVARCHAR" />
+		<result column="parent_guid" property="parentGuid" jdbcType="NVARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+		id,
+		name,
+		display_name,
+		password_hash,
+		email_address,
+		domain_name,
+		domain_account,
+		computer_name,
+		create_date,
+		bus_cost_center_id,
+		deleted_flag,
+		enabled_flag,
+		delete_date,
+		telno,
+		work_no,
+		card_isn,
+		introduction,
+		bus_cost_control_rule_id,
+		bus_charge_context_id,
+		domain_validation_flag,
+		guid,
+		parent_guid
+	</sql>
+	
+	<!-- 表名 -->
+	<sql id="tbl_name">bus_user</sql>
+	
+	<!-- 根据主键查询记录 -->
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				id = #{id,jdbcType=INTEGER}
+			</trim>
+		</where>
+	</select>
+
+	<!-- 插入一条记录 -->
+	<insert id="insert" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" > 
+		insert into <include refid="tbl_name" /> (
+			id,
+			name,
+			display_name,
+			password_hash,
+			email_address,
+			domain_name,
+			domain_account,
+			computer_name,
+			create_date,
+			bus_cost_center_id,
+			deleted_flag,
+			enabled_flag,
+			delete_date,
+			telno,
+			work_no,
+			card_isn,
+			introduction,
+			bus_cost_control_rule_id,
+			bus_charge_context_id,
+			token,
+			domain_validation_flag,
+			guid,
+			parent_guid
+		)
+		values 
+		(
+			#{id,jdbcType=INTEGER},
+			#{name,jdbcType=VARCHAR},
+			#{displayName,jdbcType=VARCHAR},
+			#{passwordHash,jdbcType=VARCHAR},
+			#{emailAddress,jdbcType=VARCHAR},
+			#{domainName,jdbcType=VARCHAR},
+			#{domainAccount,jdbcType=VARCHAR},
+			#{computerName,jdbcType=VARCHAR},
+			#{createDate,jdbcType=TIMESTAMP},
+			#{busCostCenterId,jdbcType=INTEGER},
+			#{deletedFlag,jdbcType=BIT},
+			#{enabledFlag,jdbcType=BIT},
+			#{deleteDate,jdbcType=TIMESTAMP},
+			#{telno,jdbcType=NVARCHAR},
+			#{workNo,jdbcType=NVARCHAR},
+			#{cardIsn,jdbcType=NVARCHAR},
+			#{introduction,jdbcType=NVARCHAR},
+			#{busCostControlRuleId,jdbcType=INTEGER},
+			#{busChargeContextId,jdbcType=INTEGER},
+			#{token,jdbcType=BINARY},
+			#{domainValidationFlag,jdbcType=BIT},
+			#{guid,jdbcType=NVARCHAR},
+			#{parentGuid,jdbcType=NVARCHAR}
+		)
+	</insert>
+
+	<!-- 插入一条记录（部分字段） -->
+	<insert id="insertSelective" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" > 
+		insert into <include refid="tbl_name" />
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="displayName != null">
+				display_name,
+			</if>
+			<if test="passwordHash != null">
+				password_hash,
+			</if>
+			<if test="emailAddress != null">
+				email_address,
+			</if>
+			<if test="domainName != null">
+				domain_name,
+			</if>
+			<if test="domainAccount != null">
+				domain_account,
+			</if>
+			<if test="computerName != null">
+				computer_name,
+			</if>
+			<if test="createDate != null">
+				create_date,
+			</if>
+			<if test="busCostCenterId != null">
+				bus_cost_center_id,
+			</if>
+			<if test="deletedFlag != null">
+				deleted_flag,
+			</if>
+			<if test="enabledFlag != null">
+				enabled_flag,
+			</if>
+			<if test="deleteDate != null">
+				delete_date,
+			</if>
+			<if test="telno != null">
+				telno,
+			</if>
+			<if test="workNo != null">
+				work_no,
+			</if>
+			<if test="cardIsn != null">
+				card_isn,
+			</if>
+			<if test="introduction != null">
+				introduction,
+			</if>
+			<if test="busCostControlRuleId != null">
+				bus_cost_control_rule_id,
+			</if>
+			<if test="busChargeContextId != null">
+				bus_charge_context_id,
+			</if>
+			<if test="token != null">
+				token,
+			</if>
+			<if test="domainValidationFlag != null">
+				domain_validation_flag,
+			</if>
+			<if test="guid != null">
+				guid,
+			</if>
+			<if test="parentGuid != null">
+				parent_guid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="displayName != null">
+				#{displayName,jdbcType=VARCHAR},
+			</if>
+			<if test="passwordHash != null">
+				#{passwordHash,jdbcType=VARCHAR},
+			</if>
+			<if test="emailAddress != null">
+				#{emailAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="domainName != null">
+				#{domainName,jdbcType=VARCHAR},
+			</if>
+			<if test="domainAccount != null">
+				#{domainAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="computerName != null">
+				#{computerName,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="busCostCenterId != null">
+				#{busCostCenterId,jdbcType=INTEGER},
+			</if>
+			<if test="deletedFlag != null">
+				#{deletedFlag,jdbcType=BIT},
+			</if>
+			<if test="enabledFlag != null">
+				#{enabledFlag,jdbcType=BIT},
+			</if>
+			<if test="deleteDate != null">
+				#{deleteDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="telno != null">
+				#{telno,jdbcType=NVARCHAR},
+			</if>
+			<if test="workNo != null">
+				#{workNo,jdbcType=NVARCHAR},
+			</if>
+			<if test="cardIsn != null">
+				#{cardIsn,jdbcType=NVARCHAR},
+			</if>
+			<if test="introduction != null">
+				#{introduction,jdbcType=NVARCHAR},
+			</if>
+			<if test="busCostControlRuleId != null">
+				#{busCostControlRuleId,jdbcType=INTEGER},
+			</if>
+			<if test="busChargeContextId != null">
+				#{busChargeContextId,jdbcType=INTEGER},
+			</if>
+			<if test="token != null">
+				#{token,jdbcType=BINARY},
+			</if>
+			<if test="domainValidationFlag != null">
+				#{domainValidationFlag,jdbcType=BIT},
+			</if>
+			<if test="guid != null">
+				#{guid,jdbcType=NVARCHAR},
+			</if>
+			<if test="parentGuid != null">
+				#{parentGuid,jdbcType=NVARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 批量插入记录 -->
+	<insert id="insertBatch" useGeneratedKeys="true" parameterType="java.util.List" > 
+		insert into <include refid="tbl_name" /> (
+			id,
+			name,
+			display_name,
+			password_hash,
+			email_address,
+			domain_name,
+			domain_account,
+			computer_name,
+			create_date,
+			bus_cost_center_id,
+			deleted_flag,
+			enabled_flag,
+			delete_date,
+			telno,
+			work_no,
+			card_isn,
+			introduction,
+			bus_cost_control_rule_id,
+			bus_charge_context_id,
+			token,
+			domain_validation_flag,
+			guid,
+			parent_guid
+		)
+		values
+		<foreach collection="list" index="index" item="entity" separator=",">
+		(
+			#{entity.id,jdbcType=INTEGER},
+			#{entity.name,jdbcType=VARCHAR},
+			#{entity.displayName,jdbcType=VARCHAR},
+			#{entity.passwordHash,jdbcType=VARCHAR},
+			#{entity.emailAddress,jdbcType=VARCHAR},
+			#{entity.domainName,jdbcType=VARCHAR},
+			#{entity.domainAccount,jdbcType=VARCHAR},
+			#{entity.computerName,jdbcType=VARCHAR},
+			#{entity.createDate,jdbcType=TIMESTAMP},
+			#{entity.busCostCenterId,jdbcType=INTEGER},
+			#{entity.deletedFlag,jdbcType=BIT},
+			#{entity.enabledFlag,jdbcType=BIT},
+			#{entity.deleteDate,jdbcType=TIMESTAMP},
+			#{entity.telno,jdbcType=NVARCHAR},
+			#{entity.workNo,jdbcType=NVARCHAR},
+			#{entity.cardIsn,jdbcType=NVARCHAR},
+			#{entity.introduction,jdbcType=NVARCHAR},
+			#{entity.busCostControlRuleId,jdbcType=INTEGER},
+			#{entity.busChargeContextId,jdbcType=INTEGER},
+			#{entity.token,jdbcType=BINARY},
+			#{entity.domainValidationFlag,jdbcType=BIT},
+			#{entity.guid,jdbcType=NVARCHAR},
+			#{entity.parentGuid,jdbcType=NVARCHAR}
+		)
+		</foreach>
+	</insert>
+	
+	<!-- 根据主键删除数据 -->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		delete from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				id = #{id,jdbcType=INTEGER}
+		    </trim>
+		</where>
+	</delete>
+	
+	<!-- 根据多个主键，批量删除数据 -->
+	<delete id="deleteBatchByPKs" parameterType="java.lang.String" >
+		delete from <include refid="tbl_name" />
+	    <where>
+			<trim suffixOverrides="AND" >
+				id in 
+				<foreach collection="ids" item="id" index="index" open="(" separator="," close=")">
+				#{id}
+				</foreach>
+			</trim>
+		</where>
+	</delete>
+	
+	<!-- 根据主键，修改一条记录 -->
+	<update id="updateByPrimaryKey" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		update <include refid="tbl_name" />
+    	<trim prefix="set" suffixOverrides=","> 
+			<if test="name != null and name != ''">
+	    		name = #{name,jdbcType=VARCHAR},
+	    	</if>
+			<if test="displayName != null and displayName != ''">
+	    		display_name = #{displayName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="passwordHash != null and passwordHash != ''">
+	    		password_hash = #{passwordHash,jdbcType=VARCHAR},
+	    	</if>
+			<if test="emailAddress != null and emailAddress != ''">
+	    		email_address = #{emailAddress,jdbcType=VARCHAR},
+	    	</if>
+			<if test="domainName != null and domainName != ''">
+	    		domain_name = #{domainName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="domainAccount != null and domainAccount != ''">
+	    		domain_account = #{domainAccount,jdbcType=VARCHAR},
+	    	</if>
+			<if test="computerName != null and computerName != ''">
+	    		computer_name = #{computerName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="createDate != null">
+	    		create_date = #{createDate,jdbcType=TIMESTAMP},
+	    	</if>
+			<if test="busCostCenterId != null">
+	    		bus_cost_center_id = #{busCostCenterId,jdbcType=INTEGER},
+	    	</if>
+			<if test="deletedFlag != null">
+	    		deleted_flag = #{deletedFlag,jdbcType=BIT},
+	    	</if>
+			<if test="enabledFlag != null">
+	    		enabled_flag = #{enabledFlag,jdbcType=BIT},
+	    	</if>
+			<if test="deleteDate != null">
+	    		delete_date = #{deleteDate,jdbcType=TIMESTAMP},
+	    	</if>
+			<if test="telno != null and telno != ''">
+	    		telno = #{telno,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="workNo != null and workNo != ''">
+	    		work_no = #{workNo,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="cardIsn != null and cardIsn != ''">
+	    		card_isn = #{cardIsn,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="introduction != null and introduction != ''">
+	    		introduction = #{introduction,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="busCostControlRuleId != null">
+	    		bus_cost_control_rule_id = #{busCostControlRuleId,jdbcType=INTEGER},
+	    	</if>
+			<if test="busChargeContextId != null">
+	    		bus_charge_context_id = #{busChargeContextId,jdbcType=INTEGER},
+	    	</if>
+			<if test="token != null">
+	    		token = #{token,jdbcType=BINARY},
+	    	</if>
+			<if test="domainValidationFlag != null">
+	    		domain_validation_flag = #{domainValidationFlag,jdbcType=BIT},
+	    	</if>
+			<if test="guid != null and guid != ''">
+	    		guid = #{guid,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="parentGuid != null and parentGuid != ''">
+	    		parent_guid = #{parentGuid,jdbcType=NVARCHAR},
+	    	</if>
+		</trim> 
+		where 
+			id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 根据主键，修改一条记录（部分字段） -->
+	<update id="updateByPrimaryKeySelective" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		update <include refid="tbl_name" />
+    	<trim prefix="SET" suffixOverrides=",">
+			<if test="name != null">
+	    		name = #{name,jdbcType=VARCHAR},
+	    	</if>
+			<if test="displayName != null">
+	    		display_name = #{displayName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="passwordHash != null">
+	    		password_hash = #{passwordHash,jdbcType=VARCHAR},
+	    	</if>
+			<if test="emailAddress != null">
+	    		email_address = #{emailAddress,jdbcType=VARCHAR},
+	    	</if>
+			<if test="domainName != null">
+	    		domain_name = #{domainName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="domainAccount != null">
+	    		domain_account = #{domainAccount,jdbcType=VARCHAR},
+	    	</if>
+			<if test="computerName != null">
+	    		computer_name = #{computerName,jdbcType=VARCHAR},
+	    	</if>
+			<if test="createDate != null">
+	    		create_date = #{createDate,jdbcType=TIMESTAMP},
+	    	</if>
+			<if test="busCostCenterId != null">
+	    		bus_cost_center_id = #{busCostCenterId,jdbcType=INTEGER},
+	    	</if>
+			<if test="deletedFlag != null">
+	    		deleted_flag = #{deletedFlag,jdbcType=BIT},
+	    	</if>
+			<if test="enabledFlag != null">
+	    		enabled_flag = #{enabledFlag,jdbcType=BIT},
+	    	</if>
+			<if test="deleteDate != null">
+	    		delete_date = #{deleteDate,jdbcType=TIMESTAMP},
+	    	</if>
+			<if test="telno != null">
+	    		telno = #{telno,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="workNo != null">
+	    		work_no = #{workNo,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="cardIsn != null">
+	    		card_isn = #{cardIsn,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="introduction != null">
+	    		introduction = #{introduction,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="busCostControlRuleId != null">
+	    		bus_cost_control_rule_id = #{busCostControlRuleId,jdbcType=INTEGER},
+	    	</if>
+			<if test="busChargeContextId != null">
+	    		bus_charge_context_id = #{busChargeContextId,jdbcType=INTEGER},
+	    	</if>
+			<if test="token != null">
+	    		token = #{token,jdbcType=BINARY},
+	    	</if>
+			<if test="domainValidationFlag != null">
+	    		domain_validation_flag = #{domainValidationFlag,jdbcType=BIT},
+	    	</if>
+			<if test="guid != null">
+	    		guid = #{guid,jdbcType=NVARCHAR},
+	    	</if>
+			<if test="parentGuid != null">
+	    		parent_guid = #{parentGuid,jdbcType=NVARCHAR},
+	    	</if>
+		</trim> 
+		where 
+			id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 查询全部结果 -->
+	<select id="queryAllData" resultMap="BaseResultMap" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+	</select>
+	
+	<!-- 根据参数对象，查询结果 -->
+	<select id="queryDataByModel" resultMap="BaseResultMap" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+	</select>
+	
+	<!-- 根据传入Model，查询结果列表 -->
+	<select id="queryDataByParam" resultMap="BaseResultMap" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				<if test="model.id != null">
+					AND id = #{model.id,jdbcType=INTEGER}
+				</if>
+				<if test="model.name != null and model.name != ''">
+					AND name = #{model.name,jdbcType=VARCHAR}
+				</if>
+				<if test="model.displayName != null and model.displayName != ''">
+					AND display_name = #{model.displayName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.passwordHash != null and model.passwordHash != ''">
+					AND password_hash = #{model.passwordHash,jdbcType=VARCHAR}
+				</if>
+				<if test="model.emailAddress != null and model.emailAddress != ''">
+					AND email_address = #{model.emailAddress,jdbcType=VARCHAR}
+				</if>
+				<if test="model.domainName != null and model.domainName != ''">
+					AND domain_name = #{model.domainName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.domainAccount != null and model.domainAccount != ''">
+					AND domain_account = #{model.domainAccount,jdbcType=VARCHAR}
+				</if>
+				<if test="model.computerName != null and model.computerName != ''">
+					AND computer_name = #{model.computerName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.createDate != null">
+					AND create_date = #{model.createDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="model.busCostCenterId != null">
+					AND bus_cost_center_id = #{model.busCostCenterId,jdbcType=INTEGER}
+				</if>
+				<if test="model.deletedFlag != null">
+					AND deleted_flag = #{model.deletedFlag,jdbcType=BIT}
+				</if>
+				<if test="model.enabledFlag != null">
+					AND enabled_flag = #{model.enabledFlag,jdbcType=BIT}
+				</if>
+				<if test="model.deleteDate != null">
+					AND delete_date = #{model.deleteDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="model.telno != null and model.telno != ''">
+					AND telno = #{model.telno,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.workNo != null and model.workNo != ''">
+					AND work_no = #{model.workNo,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.cardIsn != null and model.cardIsn != ''">
+					AND card_isn = #{model.cardIsn,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.introduction != null and model.introduction != ''">
+					AND introduction = #{model.introduction,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.busCostControlRuleId != null">
+					AND bus_cost_control_rule_id = #{model.busCostControlRuleId,jdbcType=INTEGER}
+				</if>
+				<if test="model.busChargeContextId != null">
+					AND bus_charge_context_id = #{model.busChargeContextId,jdbcType=INTEGER}
+				</if>
+				<if test="model.token != null">
+					AND token = #{model.token,jdbcType=BINARY}
+				</if>
+				<if test="model.domainValidationFlag != null">
+					AND domain_validation_flag = #{model.domainValidationFlag,jdbcType=BIT}
+				</if>
+				<if test="model.guid != null and model.guid != ''">
+					AND guid = #{model.guid,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.parentGuid != null and model.parentGuid != ''">
+					AND parent_guid = #{model.parentGuid,jdbcType=NVARCHAR}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 根据传入where语句，查询结果列表 -->
+	<select id="queryDataByWhere" resultMap="BaseResultMap" parameterType="java.lang.String" >
+		select 
+		<include refid="Base_Column_List" />
+		from <include refid="tbl_name" />
+		<if test="where != null and where != ''">
+			${where}
+		</if>
+	</select>
+	
+	<!-- 根据传入Model，查询数据记录数 -->
+	<select id="queryCountByParam" resultType="java.lang.Integer" parameterType="com.lanxum.jd.mobile.print.modules.bususer.entity.BusUser" >
+		select count(*)
+		from <include refid="tbl_name" />
+		<where>
+			<trim suffixOverrides="AND" >
+				<if test="model.id != null">
+					AND id = #{model.id,jdbcType=INTEGER}
+				</if>
+				<if test="model.name != null and model.name != ''">
+					AND name = #{model.name,jdbcType=VARCHAR}
+				</if>
+				<if test="model.displayName != null and model.displayName != ''">
+					AND display_name = #{model.displayName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.passwordHash != null and model.passwordHash != ''">
+					AND password_hash = #{model.passwordHash,jdbcType=VARCHAR}
+				</if>
+				<if test="model.emailAddress != null and model.emailAddress != ''">
+					AND email_address = #{model.emailAddress,jdbcType=VARCHAR}
+				</if>
+				<if test="model.domainName != null and model.domainName != ''">
+					AND domain_name = #{model.domainName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.domainAccount != null and model.domainAccount != ''">
+					AND domain_account = #{model.domainAccount,jdbcType=VARCHAR}
+				</if>
+				<if test="model.computerName != null and model.computerName != ''">
+					AND computer_name = #{model.computerName,jdbcType=VARCHAR}
+				</if>
+				<if test="model.createDate != null">
+					AND create_date = #{model.createDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="model.busCostCenterId != null">
+					AND bus_cost_center_id = #{model.busCostCenterId,jdbcType=INTEGER}
+				</if>
+				<if test="model.deletedFlag != null">
+					AND deleted_flag = #{model.deletedFlag,jdbcType=BIT}
+				</if>
+				<if test="model.enabledFlag != null">
+					AND enabled_flag = #{model.enabledFlag,jdbcType=BIT}
+				</if>
+				<if test="model.deleteDate != null">
+					AND delete_date = #{model.deleteDate,jdbcType=TIMESTAMP}
+				</if>
+				<if test="model.telno != null and model.telno != ''">
+					AND telno = #{model.telno,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.workNo != null and model.workNo != ''">
+					AND work_no = #{model.workNo,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.cardIsn != null and model.cardIsn != ''">
+					AND card_isn = #{model.cardIsn,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.introduction != null and model.introduction != ''">
+					AND introduction = #{model.introduction,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.busCostControlRuleId != null">
+					AND bus_cost_control_rule_id = #{model.busCostControlRuleId,jdbcType=INTEGER}
+				</if>
+				<if test="model.busChargeContextId != null">
+					AND bus_charge_context_id = #{model.busChargeContextId,jdbcType=INTEGER}
+				</if>
+				<if test="model.token != null">
+					AND token = #{model.token,jdbcType=BINARY}
+				</if>
+				<if test="model.domainValidationFlag != null">
+					AND domain_validation_flag = #{model.domainValidationFlag,jdbcType=BIT}
+				</if>
+				<if test="model.guid != null and model.guid != ''">
+					AND guid = #{model.guid,jdbcType=NVARCHAR}
+				</if>
+				<if test="model.parentGuid != null and model.parentGuid != ''">
+					AND parent_guid = #{model.parentGuid,jdbcType=NVARCHAR}
+				</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 根据传入where语句，查询数据记录数 -->
+	<select id="queryCountByWhere" resultMap="BaseResultMap" parameterType="java.lang.String" >
+		select count(*)
+		from <include refid="tbl_name" />
+		<if test="${where} != null and ${where} != ''">
+			${where}
+		</if>
+	</select>
+	
+</mapper>

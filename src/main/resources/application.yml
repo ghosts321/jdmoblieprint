@@ -1,0 +1,76 @@
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path:
+
+debug: true
+
+jdbc:
+  type: mssql
+
+spring:
+  application:
+    name: jd-monile-print
+  jps:
+    showsql: true
+  datasource:
+    name: mssql
+    url: jdbc:sqlserver://10.2.255.37:1433;DatabaseName=domasv5
+    username: domas
+    password: lanxum
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    filters: stat,wall
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 10000
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+
+mybatis:
+  type-aliases-package: com.lanxum.jd.mobile.print.modules.**.entity
+  mapper-locations: classpath:com/lanxum/jd/mobile/print/modules/**/*Mapper.xml
+  check-config-location: true
+  config-location: classpath:mybatis-config.xml
+
+logging:
+  level:
+    root: warn
+    com:
+      lanxum:
+        jd:
+          mobile:
+            print: debug
+    org:
+      springframework:
+        boot:
+          autoconfigure: error
+        web: info
+      hibernate: error
+      mybatis: info
